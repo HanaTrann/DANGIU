@@ -304,16 +304,11 @@ let jellyfishSquad = [];
 function initJellyfish(count, width, height) {
     jellyfishSquad = [];
     const isMobile = window.innerWidth < 768;
-    
-    // Nếu count không có (null/undefined), tự lấy 25 cho Mobile và 38 cho PC
     const finalCount = count || (isMobile ? 25 : 38);
 
     for (let i = 0; i < finalCount; i++) {
-        if (typeof FastJellyfish !== "undefined") {
-            jellyfishSquad.push(new FastJellyfish(width, height));
-        } else if (typeof Jellyfish !== "undefined") {
-            jellyfishSquad.push(new Jellyfish(width, height));
-        }
+        // GỌI THẲNG JELLYFISH, KHÔNG KIỂM TRA FASTJELLYFISH NỮA
+        jellyfishSquad.push(new Jellyfish(width, height));
     }
 }
 
