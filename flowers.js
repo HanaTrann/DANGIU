@@ -303,8 +303,18 @@ let jellyfishSquad = [];
 // Khởi tạo đàn sứa đông đúc (38 con)
 function initJellyfish(count = 38, width, height) {
     jellyfishSquad = [];
-    for (let i = 0; i < count; i++) {
-        jellyfishSquad.push(new Jellyfish(width, height));
+    
+    // Kiểm tra thiết bị: Nếu là điện thoại (< 768px) thì chỉ dùng 25 con, máy tính dùng count (38 con)
+    const isMobile = window.innerWidth < 768;
+    const finalCount = isMobile ? 25 : count;
+    
+    for (let i = 0; i < finalCount; i++) {
+        // Tự động chọn lớp Jellyfish hoặc FastJellyfish tùy theo tệp code của bạn
+        if (typeof FastJellyfish !== "undefined") {
+            jellyfishSquad.push(new FastJellyfish(width, height));
+        } else if (typeof Jellyfish !== "undefined") {
+            jellyfishSquad.push(new Jellyfish(width, height));
+        }
     }
 }
 
