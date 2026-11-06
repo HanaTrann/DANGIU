@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #050f19;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#flower {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Màn hình chào */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    z-index: 99;
+    /* Làm mờ nhẹ nền để thấy rõ trái tim hồng neon bay bên dưới */
+    background: rgba(5, 15, 25, 0, 2);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* Kiểu chữ WELCOME NGUOI DEP lấp lánh neon */
+.welcome-header h1 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.8),
+        0 0 30px rgba(0, 240, 255, 0.4);
+    margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+    color: #e0ff8c;
+    font-size: 15px;
+    text-align: center;
+    opacity: 0.85;
+}
+
+/* Nút Bắt đầu */
+.btn-glow {
+    background: linear-gradient(135deg, #087b79, #00b9bb);
+    border: 2px solid #00f0ff;
+    color: #ffffff;
+    padding: 16px 32px;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-glow:active {
+    transform: scale(0.95);
+}
+
+/* Menu góc màn hình */
+.controls-menu {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+.controls-menu button {
+    background: rgba(8, 123, 121, 0.4);
+    border: 1px solid rgba(0, 229, 255, 0.5);
+    color: #e0ff8c;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+}
+
+/* Fade out khi chuyển màn */
+.welcome-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Responsive cho di động nhỏ */
+@media (max-width: 480px) {
+    .welcome-header h1 {
+        font-size: 24px;
+    }
+
+    .btn-glow {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+}
