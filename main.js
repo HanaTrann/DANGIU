@@ -56,17 +56,19 @@ if (!canvas) {
             });
         }
 
-        if (btnReplay) {
+       if (btnReplay) {
             btnReplay.addEventListener("click", () => {
-                // Đặt lại tiến trình mọc hoa và bay của sứa
+                // 1. Reset tiến trình hoa và sứa về 0
                 stemProgress = 0;
                 bloomScale = 0;
                 jellyProgress = 0;
 
-                // KHÔNG gọi lại initJellyfish ở đây để không bị nhân đôi/tăng thêm số sứa
+                // 2. Khởi tạo lại vị trí sứa (với đúng số lượng chuẩn Mobile/PC, không bị dồn thêm)
+                if (typeof initJellyfish === "function") {
+                    initJellyfish(undefined, width, height);
+                }
             });
         }
-    }
 
     if (document.readyState === "loading") {
         window.addEventListener("DOMContentLoaded", initEvents);
