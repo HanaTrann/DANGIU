@@ -45,7 +45,7 @@ if (!canvas) {
                 if (controlsMenu) controlsMenu.classList.remove("hidden");
 
                 if (typeof initJellyfish === "function") {
-                    initJellyfish(130, width, height);
+                    initJellyfish(35, width, height);
                 }
 
                 stemProgress = 0;
