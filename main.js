@@ -44,8 +44,9 @@ if (!canvas) {
                 if (welcomeScreen) welcomeScreen.classList.add("fade-out");
                 if (controlsMenu) controlsMenu.classList.remove("hidden");
 
+                // Gọi initJellyfish KHÔNG truyền tham số để flowers.js tự nhận diện Mobile/PC
                 if (typeof initJellyfish === "function") {
-                    initJellyfish(35, width, height);
+                    initJellyfish(undefined, width, height);
                 }
 
                 stemProgress = 0;
@@ -57,12 +58,12 @@ if (!canvas) {
 
         if (btnReplay) {
             btnReplay.addEventListener("click", () => {
+                // Đặt lại tiến trình mọc hoa và bay của sứa
                 stemProgress = 0;
                 bloomScale = 0;
                 jellyProgress = 0;
-                if (typeof initJellyfish === "function") {
-                    initJellyfish(130, width, height);
-                }
+
+                // KHÔNG gọi lại initJellyfish ở đây để không bị nhân đôi/tăng thêm số sứa
             });
         }
     }
