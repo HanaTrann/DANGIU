@@ -272,7 +272,8 @@ class Jellyfish {
         grad.addColorStop(1, "rgba(0, 185, 187, 0.05)");
 
         ctx.fillStyle = grad;
-        ctx.shadowBlur = 18;
+        // Tắt shadowBlur trên điện thoại (< 768px) để không bị lag, máy tính giữ nguyên 18
+      ctx.shadowBlur = window.innerWidth < 768 ? 0 : 18;
         ctx.shadowColor = this.color;
         ctx.fill();
 
