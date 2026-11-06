@@ -14,21 +14,26 @@ if (!canvas) {
     let jellyProgress = 0;
 
     function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
 
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        ctx.scale(dpr, dpr);
+    // Giảm DPR xuống 1 trên điện thoại để máy không bị quá tải GPU
+    const isMobile = width < 768;
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
 
-        if (typeof initSparklingBackground === "function") {
-            initSparklingBackground(180, width, height);
-        }
-        if (typeof initWelcomeHearts === "function") {
-            initWelcomeHearts(35, width, height);
-        }
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+
+    // Điện thoại chỉ dùng 60 sao nền (thay vì 180) để chống lag triệt để
+    const starCount = isMobile ? 60 : 180;
+    if (typeof initSparklingBackground === "function") {
+        initSparklingBackground(starCount, width, height);
     }
+    if (typeof initWelcomeHearts === "function") {
+        initWelcomeHearts(35, width, height);
+    }
+}
 
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
