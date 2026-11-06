@@ -44,9 +44,9 @@ if (!canvas) {
                 if (welcomeScreen) welcomeScreen.classList.add("fade-out");
                 if (controlsMenu) controlsMenu.classList.remove("hidden");
 
-                // Gọi initJellyfish KHÔNG truyền tham số để flowers.js tự nhận diện Mobile/PC
+                // Khởi tạo đàn sứa ban đầu
                 if (typeof initJellyfish === "function") {
-                    initJellyfish(undefined, width, height);
+                    initJellyfish(null, width, height);
                 }
 
                 stemProgress = 0;
@@ -56,19 +56,20 @@ if (!canvas) {
             });
         }
 
-       if (btnReplay) {
+        if (btnReplay) {
             btnReplay.addEventListener("click", () => {
-                // 1. Reset tiến trình hoa và sứa về 0
+                // Reset tiến trình hoa và sứa
                 stemProgress = 0;
                 bloomScale = 0;
                 jellyProgress = 0;
 
-                // 2. Khởi tạo lại vị trí sứa (với đúng số lượng chuẩn Mobile/PC, không bị dồn thêm)
+                // Tải lại đàn sứa bơi từ đầu
                 if (typeof initJellyfish === "function") {
-                    initJellyfish(undefined, width, height);
+                    initJellyfish(null, width, height);
                 }
             });
         }
+    } // Đã thêm dấu đóng ngoặc nhọn bị thiếu ở đây!
 
     if (document.readyState === "loading") {
         window.addEventListener("DOMContentLoaded", initEvents);
